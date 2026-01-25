@@ -1,0 +1,15 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="50" cy="50" r="44" stroke="#00D26A" stroke-width="5" fill="#0A0A0A"/>
+
+  <!-- Left pine tree -->
+  <polygon points="30,65 22,65 26,55 21,55 26,47 23,47 30,35 37,47 34,47 39,55 34,55 38,65" fill="#00D26A"/>
+  <rect x="28" y="65" width="4" height="5" fill="#00D26A"/>
+
+  <!-- Center pine tree (taller) -->
+  <polygon points="50,70 40,70 45,58 39,58 45,48 41,48 46,38 43,38 50,23 57,38 54,38 59,48 55,48 61,58 55,58 60,70" fill="#00D26A"/>
+  <rect x="47" y="70" width="6" height="6" fill="#00D26A"/>
+
+  <!-- Right pine tree -->
+  <polygon points="70,65 62,65 66,55 61,55 66,47 63,47 70,35 77,47 74,47 79,55 74,55 78,65" fill="#00D26A"/>
+  <rect x="68" y="65" width="4" height="5" fill="#00D26A"/>
+</svg>

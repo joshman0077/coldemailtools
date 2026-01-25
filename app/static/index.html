@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Posts Scraper | Understory</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="/static/logo.jfif" alt="Understory" width="40" height="40" style="border-radius: 50%;">
+                <h1>understory</h1>
+            </div>
+            <p class="subtitle">LinkedIn Company Posts Scraper</p>
+        </header>
+
+        <main class="main">
+            <form id="scrapeForm" class="card">
+                <div class="form-group">
+                    <label for="urls">
+                        <span class="label-text">LinkedIn Company URLs</span>
+                        <span class="label-hint">One URL per line</span>
+                    </label>
+                    <textarea
+                        id="urls"
+                        rows="4"
+                        placeholder="https://www.linkedin.com/company/google&#10;https://www.linkedin.com/company/microsoft"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="maxPosts">
+                            <span class="label-text">Posts per Company</span>
+                        </label>
+                        <input
+                            type="number"
+                            id="maxPosts"
+                            value="10"
+                            min="1"
+                            max="100"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeReactions">
+                        <span class="checkbox-text">Include people who reacted on these posts</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includeComments">
+                        <span class="checkbox-text">Include people who commented on these posts</span>
+                    </label>
+                </div>
+
+                <div id="costEstimate" class="cost-estimate">
+                    <span class="cost-label">Estimated cost:</span>
+                    <span class="cost-value">$0.00</span>
+                    <span class="cost-detail">(0 items)</span>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-primary">
+                    <span class="btn-text">Start Scraping</span>
+                    <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </form>
+
+            <div id="progressSection" class="card progress-card hidden">
+                <div class="progress-header">
+                    <div class="spinner"></div>
+                    <h3 id="statusTitle">Processing...</h3>
+                </div>
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="statusText" class="status-text">Initializing scrape job...</p>
+            </div>
+
+            <div id="successSection" class="card success-card hidden">
+                <div class="success-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#00D26A"/>
+                        <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>Scrape Complete!</h3>
+                <p class="success-message">Your LinkedIn posts data is ready for download.</p>
+                <a id="downloadLink" href="#" class="btn-download">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Download CSV
+                </a>
+                <button id="newScrapeBtn" class="btn-secondary">Start New Scrape</button>
+            </div>
+
+            <div id="errorSection" class="card error-card hidden">
+                <div class="error-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" fill="#EF4444"/>
+                        <path d="M15 9L9 15M9 9L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3>Something went wrong</h3>
+                <p id="errorMessage" class="error-message">An error occurred while processing your request.</p>
+                <button id="retryBtn" class="btn-secondary">Try Again</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
