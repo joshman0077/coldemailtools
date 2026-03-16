@@ -3,11 +3,16 @@
 .mcp.json
 credentials.json
 token.json
+service_account.json
 
 # Temporary files
 .tmp/
 *.tmp
 *.temp
+.tmp_*.json
+build_report.py
+expensify_weekly_email_report*.csv
+nul
 
 # Python
 __pycache__/

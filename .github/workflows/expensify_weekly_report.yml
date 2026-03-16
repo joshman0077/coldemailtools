@@ -1,0 +1,32 @@
+name: Expensify Weekly Email Report
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # Every Monday at 7:00 AM EST (12:00 UTC)
+  workflow_dispatch:         # Allow manual trigger from GitHub UI
+
+jobs:
+  run-report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests gspread google-auth python-dotenv
+
+      - name: Write service account JSON
+        run: echo '${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}' > service_account.json
+
+      - name: Run report
+        env:
+          EXPENSIFY_INSTANTLY_API_KEY: ${{ secrets.EXPENSIFY_INSTANTLY_API_KEY }}
+          EXPENSIFY_REPORT_SHEET_ID: ${{ secrets.EXPENSIFY_REPORT_SHEET_ID }}
+          GOOGLE_SERVICE_ACCOUNT_JSON: service_account.json
+        run: python tools/expensify_weekly_report.py
